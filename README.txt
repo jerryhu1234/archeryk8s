@@ -1,6 +1,6 @@
-install:
-helm template ./ --name archeryk8s --set-file ruleJson=rule.json > archery.yaml
-settings:
+1、install:
+helm install ./ --name archeryk8s --set-file ruleJson=rule.json
+2、settings:
 kubectl exec -it archeryk8s-xxxx bash
 /////////////////////////////////////
 cd /opt/archery
