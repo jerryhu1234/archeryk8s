@@ -30,6 +30,14 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
+# localvolume:
+# enabled: false
+# size: 10Gi
+# accessMode: ReadWriteOnce
+# storageClass: local-volume-storage
+# localPath: /archery_data
+# volumeHosts: ["i-j6c3mz44mj5p226ch1jt", "i-j6c3mz44mj5p226ch1jv","i-j6c3mz44mj5p226ch1jt"]
+# localPath，定指pods的存储资源放在哪些worker节点上
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little

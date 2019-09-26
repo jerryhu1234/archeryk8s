@@ -20,6 +20,7 @@ service:
   type: ClusterIP
   port: 3306
   targetPort: 3306
+  clusterIP: None
 
 ingress:
   enabled: false

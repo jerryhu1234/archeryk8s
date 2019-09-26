@@ -16,6 +16,7 @@ service:
   type: ClusterIP
   port: 6379
   targetPort: 6379
+  clusterIP: None
 
 ingress:
   enabled: false

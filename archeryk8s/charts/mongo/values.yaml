@@ -21,6 +21,7 @@ service:
   type: ClusterIP
   port: 27017
   targetPort: 27017
+  clusterIP: None
 
 ingress:
   enabled: false

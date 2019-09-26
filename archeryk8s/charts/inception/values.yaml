@@ -45,7 +45,7 @@ configMap:
       inception_remote_system_password=123456
       inception_remote_system_user=root
       inception_remote_backup_port=3306
-      inception_remote_backup_host=archery-mysql
+      inception_remote_backup_host=mysql
       inception_support_charset=utf8,utf8mb4
       inception_enable_nullable=0
       inception_check_primary_key=1
