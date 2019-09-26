@@ -11,9 +11,9 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
-      name: http
+      name: archery
   selector:
     app.kubernetes.io/name: {{ include "archery.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

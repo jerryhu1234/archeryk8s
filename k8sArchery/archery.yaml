@@ -1,5 +1,5 @@
 ---
-# Source: archery/charts/goinception/templates/configMap.yaml
+# Source: archeryk8s/charts/goinception/templates/configMap.yaml
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -115,7 +115,7 @@ data:
     format="console"
   
 ---
-# Source: archery/charts/inception/templates/configMap.yaml
+# Source: archeryk8s/charts/inception/templates/configMap.yaml
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -153,7 +153,7 @@ data:
   
 
 ---
-# Source: archery/charts/mysql/templates/configMap.yaml
+# Source: archeryk8s/charts/mysql/templates/configMap.yaml
 kind: ConfigMap
 apiVersion: v1
 metadata:
@@ -208,14 +208,14 @@ data:
   
 
 ---
-# Source: archery/templates/configMap.yaml
+# Source: archeryk8s/templates/configMap.yaml
 kind: ConfigMap
 apiVersion: v1
 metadata:
   name: archery-config
   labels:
-    app.kubernetes.io/name: archery
-    helm.sh/chart: archery-0.1.0
+    app.kubernetes.io/name: archeryk8s
+    helm.sh/chart: archeryk8s-0.1.0
     app.kubernetes.io/instance: archeryk8s
     app.kubernetes.io/managed-by: Tiller
 data:
@@ -2045,7 +2045,7 @@ data:
       
 
 ---
-# Source: archery/charts/goinception/templates/service.yaml
+# Source: archeryk8s/charts/goinception/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -2061,13 +2061,13 @@ spec:
     - port: 4000
       targetPort: 4000
       protocol: TCP
-      name: http
+      name: goinception
   selector:
     app.kubernetes.io/name: goinception
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/charts/inception/templates/service.yaml
+# Source: archeryk8s/charts/inception/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -2083,17 +2083,17 @@ spec:
     - port: 6669
       targetPort: 6669
       protocol: TCP
-      name: http
+      name: inception
   selector:
     app.kubernetes.io/name: inception
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/charts/mongo/templates/service.yaml
+# Source: archeryk8s/charts/mongo/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: archeryk8s-mongo
+  name: mongo
   labels:
     app.kubernetes.io/name: mongo
     helm.sh/chart: mongo-0.1.0
@@ -2105,13 +2105,13 @@ spec:
     - port: 27017
       targetPort: 27017
       protocol: TCP
-      name: http
+      name: mongo
   selector:
     app.kubernetes.io/name: mongo
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/charts/mysql/templates/service.yaml
+# Source: archeryk8s/charts/mysql/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -2125,15 +2125,15 @@ spec:
   type: ClusterIP
   ports:
     - port: 3306
-      targetPort: 
+      targetPort: 3306
       protocol: TCP
-      name: http
+      name: mysql
   selector:
     app.kubernetes.io/name: mysql
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/charts/redis/templates/service.yaml
+# Source: archeryk8s/charts/redis/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -2147,37 +2147,37 @@ spec:
   type: ClusterIP
   ports:
     - port: 6379
-      targetPort: 
+      targetPort: 6379
       protocol: TCP
-      name: http
+      name: redis
   selector:
     app.kubernetes.io/name: redis
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/templates/service.yaml
+# Source: archeryk8s/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: archeryk8s
   labels:
-    app.kubernetes.io/name: archery
-    helm.sh/chart: archery-0.1.0
+    app.kubernetes.io/name: archeryk8s
+    helm.sh/chart: archeryk8s-0.1.0
     app.kubernetes.io/instance: archeryk8s
     app.kubernetes.io/managed-by: Tiller
 spec:
   type: ClusterIP
   ports:
     - port: 9123
-      targetPort: http
+      targetPort: 9123
       protocol: TCP
-      name: http
+      name: archery
   selector:
-    app.kubernetes.io/name: archery
+    app.kubernetes.io/name: archeryk8s
     app.kubernetes.io/instance: archeryk8s
 
 ---
-# Source: archery/charts/goinception/templates/deployment.yaml
+# Source: archeryk8s/charts/goinception/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -2220,7 +2220,7 @@ spec:
         
 
 ---
-# Source: archery/charts/inception/templates/deployment.yaml
+# Source: archeryk8s/charts/inception/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -2263,7 +2263,7 @@ spec:
         
 
 ---
-# Source: archery/charts/mongo/templates/deployment.yaml
+# Source: archeryk8s/charts/mongo/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -2314,11 +2314,11 @@ spec:
             path: /mongo/datadir
 
 ---
-# Source: archery/charts/mysql/templates/deployment.yaml
+# Source: archeryk8s/charts/mysql/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: archeryk8s-mysql
+  name: mysql
   labels:
     app.kubernetes.io/name: mysql
     helm.sh/chart: mysql-0.1.0
@@ -2372,7 +2372,7 @@ spec:
         
 
 ---
-# Source: archery/charts/redis/templates/deployment.yaml
+# Source: archeryk8s/charts/redis/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -2410,26 +2410,26 @@ spec:
             
 
 ---
-# Source: archery/templates/deployment.yaml
+# Source: archeryk8s/templates/deployment.yaml
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: archeryk8s
   labels:
-    app.kubernetes.io/name: archery
-    helm.sh/chart: archery-0.1.0
+    app.kubernetes.io/name: archeryk8s
+    helm.sh/chart: archeryk8s-0.1.0
     app.kubernetes.io/instance: archeryk8s
     app.kubernetes.io/managed-by: Tiller
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: archery
+      app.kubernetes.io/name: archeryk8s
       app.kubernetes.io/instance: archeryk8s
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: archery
+        app.kubernetes.io/name: archeryk8s
         app.kubernetes.io/instance: archeryk8s
     spec:
       initContainers:
@@ -2446,7 +2446,7 @@ spec:
           - mountPath: /opt/archery/src/script
             name: archery-script
       containers:
-        - name: archery
+        - name: archeryk8s
           image: "hhyo/archery:1.6.7"
           imagePullPolicy: IfNotPresent
           env:
@@ -2497,29 +2497,29 @@ spec:
         
 
 ---
-# Source: archery/charts/goinception/templates/ingress.yaml
+# Source: archeryk8s/charts/goinception/templates/ingress.yaml
 
 
 ---
-# Source: archery/charts/inception/templates/ingress.yaml
+# Source: archeryk8s/charts/inception/templates/ingress.yaml
 
 
 ---
-# Source: archery/charts/mongo/templates/ingress.yaml
+# Source: archeryk8s/charts/mongo/templates/ingress.yaml
 
 
 ---
-# Source: archery/charts/mysql/templates/ingress.yaml
+# Source: archeryk8s/charts/mysql/templates/ingress.yaml
 
 
 ---
-# Source: archery/charts/mysql/templates/mysql.yaml
+# Source: archeryk8s/charts/mysql/templates/mysql.yaml
 
 ---
-# Source: archery/charts/redis/templates/ingress.yaml
+# Source: archeryk8s/charts/redis/templates/ingress.yaml
 
 
 ---
-# Source: archery/templates/ingress.yaml
+# Source: archeryk8s/templates/ingress.yaml
 
 

@@ -15,7 +15,7 @@ service:
   name: redis
   type: ClusterIP
   port: 6379
-  targtPort: 6379
+  targetPort: 6379
 
 ingress:
   enabled: false
