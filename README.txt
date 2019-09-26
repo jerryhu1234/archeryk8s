@@ -1,5 +1,3 @@
-MAINTAINER: jerry.hu
-基于HELM2，进行编写
 1、setting:
 values.yaml下配置
 相关configMap的文件，settings.py，soar.yaml，analysis_slow_query.sh等
