@@ -17,6 +17,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
+  name: mongo
   type: ClusterIP
   port: 27017
   targetPort: 27017

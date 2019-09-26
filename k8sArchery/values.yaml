@@ -30,6 +30,16 @@ ingress:
   #      - chart-example.local
 
 resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
 volumeMounts:
   - name: archery-settings
     subPath: settings.py
@@ -46,17 +56,6 @@ volumeMounts:
   - name: archery-settings
     subPath: startup.sh
     mountPath: /opt/archery/src/docker/startup.sh
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
 nodeSelector: {}
 
 tolerations: []
@@ -74,7 +73,6 @@ volumes:
   - name: archery-script
     hostPath:
       path: /data/archery/scripts
-
 
 configMap:
   enabled: true
@@ -446,6 +444,7 @@ configMap:
       
       gunicorn -w 4 --env DJANGO_SETTINGS_MODULE=${settings} --log-level=debug --error-logfile=/tmp/archery.err -b ${ip}:${port} --preload --timeout 600  archery.wsgi:application
 
+#目前放configMap中，存在格式问题，暂时提出一个参数放出来，并在安装的时候需要指定文件传入，--set-file ruleJson=rule.json
 ruleJson: {}
 
 

@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ include "mysql.fullname" . }}
+  name: {{ .Values.service.name }}
   labels:
     app.kubernetes.io/name: {{ include "mysql.name" . }}
     helm.sh/chart: {{ include "mysql.chart" . }}

@@ -12,6 +12,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 service:
+  name: redis
   type: ClusterIP
   port: 6379
   targtPort: 6379

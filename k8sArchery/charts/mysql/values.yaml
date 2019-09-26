@@ -16,6 +16,7 @@ fullnameOverride: ""
 
 
 service:
+  name: mysql
   type: ClusterIP
   port: 3306
   targtPort: 3306
