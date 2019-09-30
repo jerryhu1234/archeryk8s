@@ -88,10 +88,10 @@ configMap:
       check_float_double=true
       support_charset="utf8,utf8mb4"
       support_collation="utf8_general_ci,utf8mb4_general_ci"
-      backup_host="mysql"
+      backup_host="archery-mysql"
       backup_port=3306
       backup_user="root"
-      backup_password="123456"
+      backup_password="archery"
       #安全更新是否开启.
       #-1表示不做操作,基于远端数据库[默认值]
       #0表示关闭安全更新

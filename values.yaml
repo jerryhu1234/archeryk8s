@@ -38,6 +38,45 @@ ingress:
 # localPath: /archery_data
 # volumeHosts: ["i-j6c3mz44mj5p226ch1jt", "i-j6c3mz44mj5p226ch1jv","i-j6c3mz44mj5p226ch1jt"]
 # localPath，定指pods的存储资源放在哪些worker节点上
+
+# subcharts redis
+redis:
+  usePassword: ""
+  persistence:
+    enabled: false
+# subchats mysql
+mysql:
+  mysqlRootPassword: archery
+  mysqlDatabase: archery
+  persistence:
+    enabled: false
+  configurationFiles:
+    mysql.cnf: |-
+       [mysqld_safe]
+       nice            = 0
+       [mysqld]
+       port            = 3306
+       skip-external-locking
+       lower_case_table_names=1
+       default-time_zone = '+8:00'
+       innodb_buffer_pool_size = 512M
+       server-id              = 100
+       log_bin                        = /var/log/mysql/mysql-bin.log
+       expire_logs_days        = 1
+       max_binlog_size         = 500M
+       character-set-server = utf8mb4
+       collation-server = utf8mb4_general_ci
+       slow_query_log_file = mysql-slow.log
+       slow_query_log      = 1
+       long_query_time = 1
+       [client]
+       default-character-set=utf8mb4
+       [mysqldump]
+       quick
+       quote-names
+       max_allowed_packet      = 1024M
+       !includedir /etc/mysql/conf.d/
+    
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -211,8 +250,8 @@ configMap:
                 'ENGINE': 'django.db.backends.mysql',
                 'NAME': 'archery',
                 'USER': 'root',
-                'PASSWORD': '123456',
-                'HOST': 'mysql',
+                'PASSWORD': 'archery',
+                'HOST': 'archery-mysql',
                 'PORT': '3306',
                 'OPTIONS': {
                     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -244,7 +283,7 @@ configMap:
         CACHES = {
             "default": {
                 "BACKEND": "django_redis.cache.RedisCache",
-                "LOCATION": "redis://redis:6379/0",
+                "LOCATION": "redis://archery-redis:6379/0",
                 "OPTIONS": {
                     "CLIENT_CLASS": "django_redis.client.DefaultClient",
                     "PASSWORD": ""
@@ -252,7 +291,7 @@ configMap:
             },
             "dingding": {
                 "BACKEND": "django_redis.cache.RedisCache",
-                "LOCATION": "redis://redis:6379/1",
+                "LOCATION": "redis://archery-redis:6379/1",
                 "OPTIONS": {
                     "CLIENT_CLASS": "django_redis.client.DefaultClient",
                     "PASSWORD": ""
@@ -390,10 +429,10 @@ configMap:
         cd $DIR
         
         #配置archery数据库的连接地址
-        monitor_db_host="mysql"
+        monitor_db_host="archery-mysql"
         monitor_db_port=3306
         monitor_db_user="root"
-        monitor_db_password="123456"
+        monitor_db_password="archery"
         monitor_db_database="archery"
         
         #实例慢日志位置
