@@ -11,4 +11,3 @@ ii 集群外访问 将svc配置为nodePort或loadBalance，或开启ingress
 
 默认用户名：admin
 默认密码：Archery2019
-
